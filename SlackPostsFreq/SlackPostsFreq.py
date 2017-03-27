@@ -4,6 +4,7 @@ import urllib.parse
 import urllib.request
 import time
 import datetime
+import os
 
 def utimeToReadebleTime(utime):
     return datetime.datetime.fromtimestamp(utime).strftime('%Y-%m-%d %H:%M:%S')
@@ -13,8 +14,13 @@ utimeNow = time.time()
 readebleTime  = utimeToReadebleTime(utimeNow)
 
 #load token
-tokf = read('', 'r')
+cwd = os.getcwd().split('\\')
+cwdm2 = '\\'.join(cwd[0:len(cwd) - 2]) + '\\' #Slack ban tokens in public git :D
+print(cwdm2)
+tokf = open(cwdm2 + 'SlackPostsFreq-token.txt', 'r')
 token = tokf.read()
+print('Token is: ' + token)
+exit()
 
 #get channels.history
 print('Loading history in ' + readebleTime)
